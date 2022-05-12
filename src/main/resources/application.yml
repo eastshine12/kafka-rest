@@ -1,0 +1,33 @@
+spring:
+  kafka:
+    producer:
+      bootstrap-servers: 192.168.0.42:9092,192.168.0.39:9092,192.168.0.149:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      acks: 1
+#      batch-size: 16384
+#      buffer-memory: 33554432
+#      compression-type: none
+#      retries: 2147483647
+     
+    consumer:
+      bootstrap-servers: 192.168.0.42:9092,192.168.0.39:9092,192.168.0.149:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: spring-boot-kafka-consumer
+#      auto-commit-interval: 5000
+#      auto-offset-reset: latest
+#      enable-auto-commit: true
+#      fetch-max-wait: 500
+#      fetch-min-size: 1
+#      heartbeat-interval: 3000
+#      isolation-level: read-uncommitted
+#      max-poll-records: 500
+      
+      
+  devtools:
+    restart:
+      enabled: true
+server:
+  port: 3000
+ 
