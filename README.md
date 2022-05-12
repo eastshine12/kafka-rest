@@ -77,16 +77,10 @@ public String publish(@RequestBody SimpleModel simpleModel) {
 #### - KafkaListener Annotation 활용하여 메시지 소비
 
 ``` java
-@PostMapping("/")
-public String publish(@RequestBody SimpleModel simpleModel) {
+@KafkaListener(topics = "토픽명", containerFactory = "kafkaListenerContainerFactory")
+public void subscribe(String value, ConsumerRecord data) {
 
-  log.info("Produce Topic : {}, Content: {}", simpleModel.getTopic(), simpleModel.getContent());
-
-  SimpleDateFormat format = new SimpleDateFormat ("[yyyy-MM-dd HH:mm:ss.SSS]");
-  String contents = format.format(new Date()) + " Content: " + simpleModel.getContent();
-
-  kafkaTemplate.send(simpleModel.getTopic(), contents);
-
-  return "Publish Success. -> " + contents;
+  System.out.println("Message Received : " + value);
+  System.out.println("ConsumerRecord : " + data.toString());
 };
 ```
